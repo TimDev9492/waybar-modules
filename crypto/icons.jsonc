@@ -1,0 +1,23 @@
+{
+    "btc": "",
+    "eth": "",
+    "xrp": "XRP",
+    "doge": "DOGE",
+    "ltc": "",
+    "ada": "ADA",
+    "dot": "DOT",
+    "uni": "UNI",
+    "link": "LINK",
+    "bch": "BCH",
+    "xlm": "XLM",
+    "vet": "VET",
+    "etc": "ETC",
+    "fil": "FIL",
+    "xmr": "",
+    "sol": "SOL",
+
+    "http_error": "",
+    "connection_error": "",
+    "timeout_error": "",
+    "unexpected_error": ""
+}
