@@ -51,7 +51,7 @@ def main() -> OutputInfo:
         usd_price_per_token = usd_per_btc / token_price_per_btc
 
         return OutputInfo(
-            text=format_price(usd_price_per_token) + " $",
+            text=f"<tt>{format_price(usd_price_per_token)}</tt> $",
             tooltip=f" Exchange rate: <tt>{usd_price_per_token:.3f} {crypto_token.upper()}USD</tt>",
             alt=crypto_token
         )
