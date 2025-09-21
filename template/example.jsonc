@@ -6,7 +6,7 @@
         "hide-empty-text": true,                            // hide the module when no text is output
         "return-type": "json",                              // don't change this
         "interval": 10,                                     // the refresh interval in seconds
-        "format": "{text} {icon}",                              // output format, see https://github.com/Alexays/Waybar/wiki/Module:-Custom#format-replacements
+        "format": "{text} {icon}",                          // output format, see https://github.com/Alexays/Waybar/wiki/Module:-Custom#format-replacements
         "format-icons": "",                                // single string, array, or object, see documentation
         "max-length": 12,                                   // maximum character length to display
         "tooltip": true
