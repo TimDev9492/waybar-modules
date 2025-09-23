@@ -21,7 +21,7 @@ class UnixSocketServer:
     def __init__(self, socket_path=None, socket_user=None, socket_group=None, socket_mode=0o666):
         if socket_path is None:
             # Use a constant path in temp directory
-            self.socket_path = os.path.join(tempfile.gettempdir(), 'waybar_modules')
+            self.socket_path = os.path.join(tempfile.gettempdir(), 'waybar_modules.socket')
         else:
             self.socket_path = socket_path
         
@@ -357,8 +357,8 @@ sudo python3 server.py -u waybar -g users -m 0664
     
     parser.add_argument(
         '-s', '--socket',
-        default=os.getenv("SOCKET_FILE", "/tmp/waybar_modules_socket"),
-        help='Socket path (default: from SOCKET_FILE env var or /tmp/waybar_modules_socket)'
+        default=os.getenv("SOCKET_FILE", "/tmp/waybar_modules.socket"),
+        help='Socket path (default: from SOCKET_FILE env var or /tmp/waybar_modules.socket)'
     )
     
     parser.add_argument(
