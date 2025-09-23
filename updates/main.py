@@ -5,6 +5,11 @@ from dataclasses import dataclass, asdict
 import json
 
 import subprocess
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from sockets.client.client import UnixSocketClient
 
 @dataclass
 class OutputInfo:
@@ -14,15 +19,17 @@ class OutputInfo:
     percentage: Optional[int] = None
 
 def main() -> OutputInfo:
-    result = subprocess.run(
-        ["artix-checkupdates", "-fu"],
-        capture_output=True,
-        text=True,
-        check=True
-    )
-
-    update_count = len(result.stdout.splitlines()) - 2 # remove 2 line header
-
-    return OutputInfo(text=f"{update_count}", alt=("updates_available" if update_count > 0 else "no_updates_available"))
+    client = UnixSocketClient(socket_path=os.getenv("SOCKET_FILE", "/tmp/waybard.socket"))
+    try:
+        client.connect()
+        result = client.call_method("list_updates")
+        update_count = len(result.splitlines())
+        return OutputInfo(text=f"{update_count}", alt=("updates_available" if update_count > 0 else "no_updates_available"))
+    except Exception as e:
+        return OutputInfo(
+            text="Error",
+            alt="error",
+            tooltip=f"<tt>{e}</tt>"
+        )
 
 print(json.dumps({k: v for k, v in asdict(main()).items() if v is not None}, separators=(",", ":")))
