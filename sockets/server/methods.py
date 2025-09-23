@@ -16,7 +16,7 @@ def list_updates():
         )
         return {
             "success": True,
-            "updates": result.stdout
+            "result": result.stdout
         }
     except subprocess.CalledProcessError as e:
         return {
